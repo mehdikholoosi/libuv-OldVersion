@@ -27,6 +27,18 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: Set up C/C++ environment
+      uses: llvm/llvm-project@main
+      with:
+        llvm-version: 11
+
+    - name: Build the code
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        make
+
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
       with:
